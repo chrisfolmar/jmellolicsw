@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Phone, Mail, Sun, Moon } from "lucide-react";
+import { Menu, X, Phone, Mail, Sun, Moon, ChevronDown, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,11 +13,27 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const portalLinks = [
+  {
+    label: "Client Portal",
+    href: "https://jmellolicsw.clientsecure.me/",
+    description: "Access your secure client account",
+  },
+  {
+    label: "Telehealth (Doxy.me)",
+    href: "https://doxy.me/v2/check-in/jmellolicsw/",
+    description: "Join your virtual session",
+  },
+];
+
 export function Navigation() {
   const [location] = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [portalOpen, setPortalOpen] = useState(false);
+  const [mobilePortalOpen, setMobilePortalOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const portalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +45,7 @@ export function Navigation() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setMobilePortalOpen(false);
   }, [location]);
 
   useEffect(() => {
@@ -41,6 +58,16 @@ export function Navigation() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (portalRef.current && !portalRef.current.contains(event.target as Node)) {
+        setPortalOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const isHome = location === "/";
   const showTransparent = isHome && !scrolled;
@@ -96,6 +123,54 @@ export function Navigation() {
                   </span>
                 </Link>
               ))}
+
+              <div className="relative" ref={portalRef}>
+                <button
+                  onClick={() => setPortalOpen(!portalOpen)}
+                  data-testid="button-current-clients"
+                  className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer ${
+                    showTransparent
+                      ? "text-white/80 hover:text-white hover:bg-white/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                  }`}
+                >
+                  Current Clients
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${portalOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                <AnimatePresence>
+                  {portalOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 top-full mt-1 w-64 rounded-md border border-border bg-background/95 backdrop-blur-md shadow-lg overflow-hidden"
+                      data-testid="dropdown-current-clients"
+                    >
+                      <div className="p-1.5">
+                        {portalLinks.map((portal) => (
+                          <a
+                            key={portal.label}
+                            href={portal.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-start gap-3 px-3 py-2.5 rounded-md hover-elevate transition-colors cursor-pointer group"
+                            data-testid={`link-portal-${portal.label.toLowerCase().replace(/[^a-z]/g, "-")}`}
+                            onClick={() => setPortalOpen(false)}
+                          >
+                            <ExternalLink className="w-4 h-4 mt-0.5 text-primary shrink-0" />
+                            <div>
+                              <p className="text-sm font-medium">{portal.label}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">{portal.description}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </nav>
 
             <div className="flex items-center gap-2">
@@ -178,7 +253,7 @@ export function Navigation() {
                 </Button>
               </div>
 
-              <nav className="flex flex-col p-4 gap-1">
+              <nav className="flex flex-col p-4 gap-1 overflow-y-auto">
                 {navLinks.map((link) => (
                   <Link key={link.href} href={link.href}>
                     <span
@@ -193,6 +268,45 @@ export function Navigation() {
                     </span>
                   </Link>
                 ))}
+
+                <div className="mt-2 pt-2 border-t border-border">
+                  <button
+                    onClick={() => setMobilePortalOpen(!mobilePortalOpen)}
+                    className="flex items-center justify-between w-full px-4 py-3 rounded-md text-sm font-medium text-muted-foreground transition-colors"
+                    data-testid="button-mobile-current-clients"
+                  >
+                    Current Clients
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobilePortalOpen ? "rotate-180" : ""}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {mobilePortalOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-4 space-y-1 pb-1">
+                          {portalLinks.map((portal) => (
+                            <a
+                              key={portal.label}
+                              href={portal.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2.5 px-4 py-2.5 rounded-md text-sm text-muted-foreground hover-elevate transition-colors"
+                              data-testid={`link-mobile-portal-${portal.label.toLowerCase().replace(/[^a-z]/g, "-")}`}
+                            >
+                              <ExternalLink className="w-3.5 h-3.5 text-primary shrink-0" />
+                              {portal.label}
+                            </a>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </nav>
 
               <div className="mt-auto p-4 border-t border-border space-y-3">
