@@ -325,14 +325,14 @@ export default function Home() {
               custom={0}
               className="text-xs uppercase tracking-[0.2em] text-primary font-medium mb-3"
             >
-              News & Updates
+              For Current Clients
             </motion.p>
             <motion.h2
               variants={fadeUp}
               custom={1}
               className="font-serif text-3xl sm:text-4xl font-semibold"
             >
-              Announcements
+              Client Portals
             </motion.h2>
           </motion.div>
 
@@ -344,22 +344,27 @@ export default function Home() {
               variants={fadeUp}
               custom={0}
             >
-              <Card className="p-6 sm:p-8 h-full" data-testid="card-announcement-fullscript">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
-                    <Leaf className="w-5 h-5 text-primary" />
+              <a
+                href="https://jmellolicsw.clientsecure.me/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block h-full"
+              >
+                <Card className="p-6 sm:p-8 h-full hover-elevate cursor-pointer" data-testid="card-announcement-portal">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
+                      <Leaf className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-2">Client Portal</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Access your secure client account to manage appointments,
+                        complete intake forms, and view session information.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Fullscript</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      I am currently in the process of converting to a Fullscript
-                      storefront. This will allow you to shop a digital catalog of
-                      vitamins and supplements and allow me to make custom
-                      recommendations. Check back soon to sign up!
-                    </p>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </a>
             </motion.div>
 
             <motion.div
@@ -369,33 +374,30 @@ export default function Home() {
               variants={fadeUp}
               custom={1}
             >
-              <Card className="p-6 sm:p-8 h-full" data-testid="card-announcement-podcast">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
-                    <Headphones className="w-5 h-5 text-primary" />
+              <a
+                href="https://doxy.me/v2/check-in/jmellolicsw/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block h-full"
+              >
+                <Card className="p-6 sm:p-8 h-full hover-elevate cursor-pointer" data-testid="card-announcement-telehealth">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
+                      <Headphones className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold mb-2">
+                        Telehealth Sessions
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Join your virtual therapy session through Doxy.me, a secure
+                        and HIPAA-compliant telehealth platform. No downloads
+                        required.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold mb-2">
-                      Build With Brabec Podcast
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                      I was fortunate enough to be a guest on the Build With Brabec
-                      Podcast, discussing therapy, coping, and practicing real
-                      self-care.
-                    </p>
-                    <a
-                      href="https://anchor.fm/buildwithbrabec/episodes/Jenny-Mello--LICSW-on-Therapy--Coping---Practicing-REAL-Self-Care-e11iub2"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button variant="outline" size="sm" className="gap-2" data-testid="button-listen-podcast">
-                        Listen Now
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </a>
             </motion.div>
           </div>
         </div>
