@@ -71,17 +71,17 @@ const resources = [
   },
   {
     icon: Flower2,
-    category: "Holistic",
-    title: "Fullscript - Supplements",
-    url: "https://fullscript.com",
-    description: "Digital catalog of professional-grade vitamins and supplements for holistic wellness.",
+    category: "Self-Help",
+    title: "Brene Brown - The Gifts of Imperfection",
+    url: "https://brenebrown.com",
+    description: "Research-based resources on vulnerability, courage, and wholehearted living.",
   },
   {
     icon: Headphones,
-    category: "Podcast",
-    title: "Build With Brabec Podcast",
-    url: "https://anchor.fm/buildwithbrabec/episodes/Jenny-Mello--LICSW-on-Therapy--Coping---Practicing-REAL-Self-Care-e11iub2",
-    description: "Listen to Jennifer discuss therapy, coping strategies, and practicing real self-care.",
+    category: "Wellness",
+    title: "Headspace - Meditation & Sleep",
+    url: "https://www.headspace.com",
+    description: "Guided meditation, mindfulness exercises, and sleep tools for everyday mental wellness.",
   },
 ];
 
