@@ -4,6 +4,9 @@
 Modern, professional website for Jennifer Mello, LICSW - a certified trauma therapist based in Plymouth, MA. The site serves as a public-facing practice website with contact form functionality.
 
 ## Recent Changes
+- 2026-02-15: SEO enhancements - canonical URLs, Twitter cards, OG tags, LocalBusiness JSON-LD, robots.txt, sitemap.xml
+- 2026-02-15: Added "Current Clients" dropdown with Client Portal and Doxy.me telehealth links
+- 2026-02-15: Removed Fullscript and Podcast links from Resources, replaced with Brene Brown and Headspace
 - 2026-02-13: Full site rebuild from WordPress to modern React stack
 - Pages: Home, About, Services, Resources, Contact, 404
 - Added contact form with PostgreSQL persistence
@@ -15,17 +18,24 @@ Modern, professional website for Jennifer Mello, LICSW - a certified trauma ther
 - **Frontend**: React + Vite + TailwindCSS + shadcn/ui + Framer Motion
 - **Backend**: Express.js with PostgreSQL (Drizzle ORM)
 - **Routing**: wouter for client-side routing
+- **SEO**: react-helmet-async for per-page meta tags, JSON-LD structured data
 - **Fonts**: Inter (sans) + Lora (serif)
 - **Color Theme**: Warm sage green primary, cream/warm white backgrounds
 
 ## Project Structure
 - `client/src/pages/` - Home, About, Services, Resources, Contact, NotFound
-- `client/src/components/` - Navigation, Footer, ThemeProvider
+- `client/src/components/` - Navigation (with Current Clients dropdown), Footer, ThemeProvider, SEO
 - `server/routes.ts` - Contact form API endpoint (POST /api/contact)
 - `server/storage.ts` - DatabaseStorage with contact submission CRUD
 - `server/db.ts` - PostgreSQL connection pool
 - `shared/schema.ts` - contactSubmissions table schema
 - `client/public/images/` - Generated hero, about, and services background images
+- `client/public/robots.txt` - Search engine crawling rules
+- `client/public/sitemap.xml` - Site map for search engines
+
+## External Portal Links
+- Client Portal: https://jmellolicsw.clientsecure.me/
+- Telehealth (Doxy.me): https://doxy.me/v2/check-in/jmellolicsw/
 
 ## Key Contact Info (Content)
 - Name: Jennifer Mello, LICSW
