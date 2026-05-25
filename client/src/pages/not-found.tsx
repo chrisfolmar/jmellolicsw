@@ -1,10 +1,16 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import { SEO } from "@/components/seo";
 
 export default function NotFound() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center pt-20">
+      <SEO
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist. Return to Jennifer Mello, LICSW — trauma therapy in Plymouth, MA."
+        path="/404"
+      />
       <div className="text-center px-4">
         <p className="text-6xl font-serif font-semibold text-primary/30 mb-4">
           404
