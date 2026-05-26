@@ -133,6 +133,20 @@ export default function Contact() {
             </motion.p>
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="mb-8 sm:mb-10"
+          >
+            <img
+              src="/images/office-inside.png"
+              alt="A warm, comfortable therapy office with blue armchairs, natural light, and calming artwork"
+              className="w-full h-64 sm:h-80 object-cover rounded-lg"
+              data-testid="img-office-inside"
+            />
+          </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -168,12 +182,21 @@ export default function Contact() {
                 </Card>
               ))}
 
+              <div className="overflow-hidden rounded-lg" data-testid="img-office-outside-wrapper">
+                <img
+                  src="/images/office-outside.png"
+                  alt="225 Water Street building exterior in Plymouth, MA — home of Jennifer Mello LICSW's office"
+                  className="w-full h-36 object-cover"
+                  data-testid="img-office-outside"
+                />
+              </div>
+
               <a
                 href="https://www.instagram.com/jennifermellolicsw/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Card className="p-5 hover-elevate cursor-pointer mt-4" data-testid="card-contact-instagram">
+                <Card className="p-5 hover-elevate cursor-pointer" data-testid="card-contact-instagram">
                   <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
                       <Instagram className="w-4 h-4 text-primary" />
