@@ -12,6 +12,8 @@ import {
   HandHeart,
   Sparkles,
   Wind,
+  Clock,
+  Info,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -163,7 +165,89 @@ export default function Services() {
             viewport={{ once: true }}
             variants={fadeUp}
             custom={0}
-            className="mt-16 text-center"
+            className="mt-20"
+          >
+            <div className="text-center mb-10">
+              <p className="text-xs uppercase tracking-[0.2em] text-primary font-medium mb-3">
+                Fees
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold mb-4">
+                Services & Fees
+              </h2>
+              <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
+                I value confidentiality and believe that you — not your insurance
+                company — should guide the length of your therapy. I do not
+                participate directly in any managed care plans.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-8">
+              {[
+                {
+                  label: "Initial Intake Assessment",
+                  duration: "60 min session",
+                  price: "$200",
+                  index: 0,
+                },
+                {
+                  label: "Individual Psychotherapy",
+                  duration: "50 min session",
+                  price: "$200",
+                  index: 1,
+                },
+                {
+                  label: "Family Consultation",
+                  duration: "50 min session",
+                  price: "$200",
+                  index: 2,
+                },
+              ].map((item) => (
+                <motion.div
+                  key={item.label}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  custom={item.index}
+                >
+                  <Card
+                    className="p-6 text-center"
+                    data-testid={`card-pricing-${item.index}`}
+                  >
+                    <p className="font-serif text-4xl font-semibold text-primary mb-1">
+                      {item.price}
+                    </p>
+                    <p className="font-medium text-sm mb-2">{item.label}</p>
+                    <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
+                      <Clock aria-hidden="true" className="w-3 h-3" />
+                      {item.duration}
+                    </p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            <Card className="max-w-3xl mx-auto p-5 bg-muted/40 border-border" data-testid="card-pricing-insurance">
+              <div className="flex items-start gap-3">
+                <Info aria-hidden="true" className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  If your insurance plan includes out-of-network benefits, you may
+                  be able to use them for my services. I can provide an itemized
+                  billing statement (superbill) for you to submit to your insurance
+                  company for potential reimbursement. A sliding scale fee may be
+                  available — please reach out to discuss.
+                </p>
+              </div>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="mt-12 text-center"
           >
             <Card className="p-8 sm:p-12 max-w-2xl mx-auto" data-testid="card-services-cta">
               <h2 className="font-serif text-2xl sm:text-3xl font-semibold mb-4">
