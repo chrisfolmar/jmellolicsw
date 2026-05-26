@@ -22,6 +22,7 @@ export default function Privacy() {
         title="Privacy Policy"
         description="Privacy policy for Jennifer Mello, LICSW. Learn how we collect, use, and protect your personal information."
         path="/privacy"
+        noIndex
       />
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24">

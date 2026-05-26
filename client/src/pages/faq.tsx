@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { SEO } from "@/components/seo";
+import { Helmet } from "react-helmet-async";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -125,6 +126,19 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
   );
 }
 
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function FAQ() {
   return (
     <div className="pt-20">
@@ -133,6 +147,11 @@ export default function FAQ() {
         description="Common questions about therapy with Jennifer Mello, LICSW — insurance, session cost, telehealth, confidentiality, and how to get started."
         path="/faq"
       />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(faqPageSchema)}
+        </script>
+      </Helmet>
 
       <section className="py-16 sm:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">

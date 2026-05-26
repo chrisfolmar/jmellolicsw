@@ -5,6 +5,7 @@ interface SEOProps {
   description: string;
   path?: string;
   ogImage?: string;
+  noIndex?: boolean;
 }
 
 const SITE_NAME = "Jennifer Mello, LICSW";
@@ -85,6 +86,7 @@ export function SEO({
   description,
   path = "",
   ogImage,
+  noIndex = false,
 }: SEOProps) {
   const fullTitle = `${title} | ${SITE_NAME}`;
   const url = `${BASE_URL}${path}`;
@@ -95,6 +97,7 @@ export function SEO({
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
+      {noIndex && <meta name="robots" content="noindex, nofollow" />}
 
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />

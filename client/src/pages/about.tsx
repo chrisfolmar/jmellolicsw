@@ -4,6 +4,48 @@ import { ArrowRight, GraduationCap, Award, Heart, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SEO } from "@/components/seo";
+import { Helmet } from "react-helmet-async";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://jmellolicsw.com/#jennifer",
+  name: "Jennifer Mello",
+  honorificSuffix: "LICSW",
+  jobTitle: "Licensed Independent Clinical Social Worker",
+  description:
+    "Certified trauma therapist specializing in holistic health and wellness therapy for adolescents and adults in Plymouth, MA.",
+  image: "https://jmellolicsw.com/images/jennifer-headshot.jpg",
+  url: "https://jmellolicsw.com/about",
+  telephone: "+15085910569",
+  email: "jmellolicsw@gmail.com",
+  sameAs: ["https://www.instagram.com/jennifermellolicsw/"],
+  worksFor: { "@id": "https://jmellolicsw.com/#business" },
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Smith College School for Social Work",
+  },
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "license",
+      name: "Licensed Independent Clinical Social Worker (LICSW)",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Commonwealth of Massachusetts",
+      },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "certificate",
+      name: "Certificate in Traumatic Stress Studies",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Smith College",
+      },
+    },
+  ],
+};
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -44,7 +86,13 @@ export default function About() {
         title="About Me"
         description="Learn about Jennifer Mello, LICSW - a certified trauma therapist with a degree from Smith College, specializing in holistic wellness therapy in Plymouth, MA."
         path="/about"
+        ogImage="https://jmellolicsw.com/images/jennifer-headshot.jpg"
       />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(personSchema)}
+        </script>
+      </Helmet>
       <section className="pt-28 sm:pt-36 pb-16 sm:pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div
