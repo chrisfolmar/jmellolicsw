@@ -4,7 +4,7 @@
 Modern, professional website for Jennifer Mello, LICSW - a certified trauma therapist based in Plymouth, MA. The site serves as a public-facing practice website with contact form functionality.
 
 ## ⚠️ Pre-Launch Checklist (Must Complete Before Going Live)
-- [ ] **Email notifications** — Set up Resend API key (env var `RESEND_API_KEY`) and wire email alerts to `jmellolicsw@gmail.com` on contact form submission, plus auto-reply to sender. Resend free tier is sufficient. See `server/routes.ts` POST `/api/contact`.
+- [ ] **Email notifications** — Add `RESEND_API_KEY` secret (from resend.com free account). Code is fully wired in `server/email.ts`. Initial FROM address is `onboarding@resend.dev` (works for testing). Once a custom domain is verified in Resend, update `FROM_ADDRESS` in `server/email.ts` to use that domain. Notifications go to `jmellolicsw@gmail.com`; senders receive an auto-reply.
 - [ ] **Custom domain** — Point `jmellolicsw.com` DNS to the deployed Replit app.
 - [ ] **Google Analytics** — Create GA4 property, add `VITE_GA_MEASUREMENT_ID` to environment secrets.
 

@@ -4,6 +4,7 @@ import rateLimit from "express-rate-limit";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { fromError } from "zod-validation-error";
+import { sendAdminNotification, sendClientAutoReply } from "./email";
 
 const contactLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
@@ -26,6 +27,10 @@ export async function registerRoutes(
       }
 
       const submission = await storage.createContactSubmission(parsed.data);
+
+      sendAdminNotification(parsed.data).catch(() => {});
+      sendClientAutoReply(parsed.data).catch(() => {});
+
       return res.status(201).json({ message: "Message received", id: submission.id });
     } catch (error) {
       console.error("Contact form error:", error);
