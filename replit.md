@@ -6,7 +6,7 @@ Modern, professional website for Jennifer Mello, LICSW - a certified trauma ther
 ## ⚠️ Pre-Launch Checklist (Must Complete Before Going Live)
 - [ ] **Email notifications** — Add `RESEND_API_KEY` secret (from resend.com free account). Code is fully wired in `server/email.ts`. Initial FROM address is `onboarding@resend.dev` (works for testing). Once a custom domain is verified in Resend, update `FROM_ADDRESS` in `server/email.ts` to use that domain. Notifications go to `jmellolicsw@gmail.com`; senders receive an auto-reply.
 - [ ] **Custom domain** — Point `jmellolicsw.com` DNS to the deployed Replit app.
-- [ ] **Google Analytics** — Create GA4 property, add `VITE_GA_MEASUREMENT_ID` to environment secrets.
+- [ ] **Google Analytics** — Code is wired in `client/src/components/analytics.tsx`. To activate: (1) go to analytics.google.com, create a GA4 property for jmellolicsw.com, (2) copy the Measurement ID (format: G-XXXXXXXXXX), (3) add it as a secret named `VITE_GA_MEASUREMENT_ID`. Tracking loads only when this variable is present — dev stays clean.
 
 ## Recent Changes
 - 2026-02-15: SEO enhancements - canonical URLs, Twitter cards, OG tags, LocalBusiness JSON-LD, robots.txt, sitemap.xml
