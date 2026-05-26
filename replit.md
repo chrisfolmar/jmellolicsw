@@ -3,6 +3,11 @@
 ## Overview
 Modern, professional website for Jennifer Mello, LICSW - a certified trauma therapist based in Plymouth, MA. The site serves as a public-facing practice website with contact form functionality.
 
+## ⚠️ Pre-Launch Checklist (Must Complete Before Going Live)
+- [ ] **Email notifications** — Set up Resend API key (env var `RESEND_API_KEY`) and wire email alerts to `jmellolicsw@gmail.com` on contact form submission, plus auto-reply to sender. Resend free tier is sufficient. See `server/routes.ts` POST `/api/contact`.
+- [ ] **Custom domain** — Point `jmellolicsw.com` DNS to the deployed Replit app.
+- [ ] **Google Analytics** — Create GA4 property, add `VITE_GA_MEASUREMENT_ID` to environment secrets.
+
 ## Recent Changes
 - 2026-02-15: SEO enhancements - canonical URLs, Twitter cards, OG tags, LocalBusiness JSON-LD, robots.txt, sitemap.xml
 - 2026-02-15: Added "Current Clients" dropdown with Client Portal and Doxy.me telehealth links

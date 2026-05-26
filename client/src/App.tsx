@@ -12,6 +12,8 @@ import About from "@/pages/about";
 import Services from "@/pages/services";
 import Resources from "@/pages/resources";
 import Contact from "@/pages/contact";
+import FAQ from "@/pages/faq";
+import Privacy from "@/pages/privacy";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
@@ -32,6 +34,8 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/resources" component={Resources} />
       <Route path="/contact" component={Contact} />
+      <Route path="/faq" component={FAQ} />
+      <Route path="/privacy" component={Privacy} />
       <Route component={NotFound} />
     </Switch>
   );

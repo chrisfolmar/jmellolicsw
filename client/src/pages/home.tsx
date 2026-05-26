@@ -312,7 +312,86 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-24 bg-card border-y border-border" data-testid="section-announcements">
+      <section className="py-16 sm:py-24 bg-card border-y border-border" data-testid="section-testimonials">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="text-center mb-12"
+          >
+            <motion.p
+              variants={fadeUp}
+              custom={0}
+              className="text-xs uppercase tracking-[0.2em] text-primary font-medium mb-3"
+            >
+              Client Experiences
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              custom={1}
+              className="font-serif text-3xl sm:text-4xl font-semibold"
+              data-testid="text-testimonials-heading"
+            >
+              What Clients Say
+            </motion.h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+            {[
+              {
+                quote:
+                  "Jennifer has a gift for making you feel truly seen and heard. Her holistic approach helped me connect the dots between my mind and body in ways I never expected.",
+                author: "S.M.",
+              },
+              {
+                quote:
+                  "I was nervous to start therapy, but Jennifer made the process feel safe and completely judgment-free from day one. I've grown so much through our work together.",
+                author: "T.R.",
+              },
+              {
+                quote:
+                  "Her trauma-informed approach is thoughtful and compassionate. I finally feel like I have real tools to move forward. I can't recommend her enough.",
+                author: "A.L.",
+              },
+            ].map((testimonial, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-20px" }}
+                variants={fadeUp}
+                custom={i}
+              >
+                <Card
+                  className="p-6 sm:p-8 h-full flex flex-col"
+                  data-testid={`card-testimonial-${i}`}
+                >
+                  <div className="flex gap-1 mb-4">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <svg
+                        key={s}
+                        className="w-4 h-4 text-primary fill-primary"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <blockquote className="text-sm text-muted-foreground leading-relaxed flex-1 italic">
+                    "{testimonial.quote}"
+                  </blockquote>
+                  <p className="mt-4 text-sm font-medium" data-testid={`text-testimonial-author-${i}`}>
+                    — {testimonial.author}
+                  </p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-24" data-testid="section-announcements">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div
             initial="hidden"
