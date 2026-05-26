@@ -86,9 +86,9 @@ export default function About() {
             >
               <div className="sticky top-28">
                 <img
-                  src="/images/about-bg.png"
-                  alt="Jennifer Mello"
-                  className="rounded-md w-full mb-6"
+                  src="/images/jennifer-headshot.jpg"
+                  alt="Jennifer Mello, LICSW — certified trauma therapist in Plymouth, MA"
+                  className="rounded-md w-full mb-6 object-cover object-top"
                   data-testid="img-about-photo"
                 />
                 <div className="grid grid-cols-2 gap-3">
