@@ -70,6 +70,8 @@ const faqs = [
 
 function FaqItem({ question, answer, index }: { question: string; answer: string; index: number }) {
   const [open, setOpen] = useState(false);
+  const answerId = `faq-answer-${index}`;
+  const questionId = `faq-question-${index}`;
 
   return (
     <motion.div
@@ -81,15 +83,18 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
       className="border-b border-border last:border-b-0"
     >
       <button
+        id={questionId}
         onClick={() => setOpen(!open)}
         className="w-full flex items-start justify-between gap-4 py-5 text-left cursor-pointer group"
         data-testid={`button-faq-${index}`}
         aria-expanded={open}
+        aria-controls={answerId}
       >
         <span className="font-medium leading-snug group-hover:text-primary transition-colors">
           {question}
         </span>
         <ChevronDown
+          aria-hidden="true"
           className={`w-5 h-5 mt-0.5 shrink-0 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         />
       </button>
@@ -98,6 +103,9 @@ function FaqItem({ question, answer, index }: { question: string; answer: string
         {open && (
           <motion.div
             key="content"
+            id={answerId}
+            role="region"
+            aria-labelledby={questionId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

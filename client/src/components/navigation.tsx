@@ -35,6 +35,10 @@ export function Navigation() {
   const [mobilePortalOpen, setMobilePortalOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const portalRef = useRef<HTMLDivElement>(null);
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,12 +56,54 @@ export function Navigation() {
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      setTimeout(() => closeButtonRef.current?.focus(), 50);
     } else {
       document.body.style.overflow = "";
+      previousFocusRef.current?.focus();
     }
     return () => {
       document.body.style.overflow = "";
     };
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      const panel = mobileNavRef.current;
+      if (!panel) return;
+
+      const focusables = Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => !el.closest("[hidden]"));
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [mobileOpen]);
 
   useEffect(() => {
@@ -105,7 +151,7 @@ export function Navigation() {
               </div>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-1" data-testid="nav-desktop">
+            <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation" data-testid="nav-desktop">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href}>
                   <span
@@ -129,6 +175,9 @@ export function Navigation() {
                 <button
                   onClick={() => setPortalOpen(!portalOpen)}
                   data-testid="button-current-clients"
+                  aria-expanded={portalOpen}
+                  aria-haspopup="true"
+                  aria-label="Current Clients menu"
                   className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer ${
                     showTransparent
                       ? "text-white/80 hover:text-white hover:bg-white/10"
@@ -136,7 +185,7 @@ export function Navigation() {
                   }`}
                 >
                   Current Clients
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${portalOpen ? "rotate-180" : ""}`} />
+                  <ChevronDown aria-hidden="true" className={`w-3.5 h-3.5 transition-transform duration-200 ${portalOpen ? "rotate-180" : ""}`} />
                 </button>
 
                 <AnimatePresence>
@@ -148,6 +197,7 @@ export function Navigation() {
                       transition={{ duration: 0.15 }}
                       className="absolute right-0 top-full mt-1 w-64 rounded-md border border-border bg-background/95 backdrop-blur-md shadow-lg overflow-hidden"
                       data-testid="dropdown-current-clients"
+                      role="menu"
                     >
                       <div className="p-1.5">
                         {portalLinks.map((portal) => (
@@ -156,11 +206,12 @@ export function Navigation() {
                             href={portal.href}
                             target="_blank"
                             rel="noopener noreferrer"
+                            role="menuitem"
                             className="flex items-start gap-3 px-3 py-2.5 rounded-md hover-elevate transition-colors cursor-pointer group"
                             data-testid={`link-portal-${portal.label.toLowerCase().replace(/[^a-z]/g, "-")}`}
                             onClick={() => setPortalOpen(false)}
                           >
-                            <ExternalLink className="w-4 h-4 mt-0.5 text-primary shrink-0" />
+                            <ExternalLink aria-hidden="true" className="w-4 h-4 mt-0.5 text-primary shrink-0" />
                             <div>
                               <p className="text-sm font-medium">{portal.label}</p>
                               <p className="text-xs text-muted-foreground mt-0.5">{portal.description}</p>
@@ -180,6 +231,7 @@ export function Navigation() {
                 variant="ghost"
                 onClick={toggleTheme}
                 data-testid="button-theme-toggle"
+                aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
                 className={
                   showTransparent
                     ? "text-white/80 hover:text-white hover:bg-white/10"
@@ -187,13 +239,13 @@ export function Navigation() {
                 }
               >
                 {theme === "light" ? (
-                  <Moon className="w-4 h-4" />
+                  <Moon aria-hidden="true" className="w-4 h-4" />
                 ) : (
-                  <Sun className="w-4 h-4" />
+                  <Sun aria-hidden="true" className="w-4 h-4" />
                 )}
               </Button>
 
-              <a href="tel:+15085910569" className="hidden sm:flex">
+              <a href="tel:+15085910569" className="hidden sm:flex" aria-label="Call (508) 591-0569">
                 <Button
                   variant={showTransparent ? "outline" : "default"}
                   className={`gap-2 text-sm ${
@@ -203,21 +255,25 @@ export function Navigation() {
                   }`}
                   data-testid="button-call-nav"
                 >
-                  <Phone className="w-3.5 h-3.5" />
+                  <Phone aria-hidden="true" className="w-3.5 h-3.5" />
                   (508) 591-0569
                 </Button>
               </a>
 
               <Button
+                ref={openButtonRef}
                 size="icon"
                 variant="ghost"
+                aria-label="Open navigation menu"
+                aria-expanded={mobileOpen}
+                aria-controls="mobile-nav-panel"
                 className={`md:hidden ${
                   showTransparent ? "text-white hover:bg-white/10" : ""
                 }`}
                 onClick={() => setMobileOpen(true)}
                 data-testid="button-mobile-menu"
               >
-                <Menu className="w-5 h-5" />
+                <Menu aria-hidden="true" className="w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -232,9 +288,15 @@ export function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/50 z-50 md:hidden"
+              aria-hidden="true"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
+              ref={mobileNavRef}
+              id="mobile-nav-panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -245,16 +307,18 @@ export function Navigation() {
               <div className="flex items-center justify-between p-4 border-b border-border">
                 <span className="font-serif text-lg font-semibold">Menu</span>
                 <Button
+                  ref={closeButtonRef}
                   size="icon"
                   variant="ghost"
                   onClick={() => setMobileOpen(false)}
+                  aria-label="Close navigation menu"
                   data-testid="button-close-mobile-menu"
                 >
-                  <X className="w-5 h-5" />
+                  <X aria-hidden="true" className="w-5 h-5" />
                 </Button>
               </div>
 
-              <nav className="flex flex-col p-4 gap-1 overflow-y-auto">
+              <nav aria-label="Mobile navigation" className="flex flex-col p-4 gap-1 overflow-y-auto">
                 {navLinks.map((link) => (
                   <Link key={link.href} href={link.href}>
                     <span
@@ -273,16 +337,19 @@ export function Navigation() {
                 <div className="mt-2 pt-2 border-t border-border">
                   <button
                     onClick={() => setMobilePortalOpen(!mobilePortalOpen)}
+                    aria-expanded={mobilePortalOpen}
+                    aria-controls="mobile-portal-links"
                     className="flex items-center justify-between w-full px-4 py-3 rounded-md text-sm font-medium text-muted-foreground transition-colors"
                     data-testid="button-mobile-current-clients"
                   >
                     Current Clients
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobilePortalOpen ? "rotate-180" : ""}`} />
+                    <ChevronDown aria-hidden="true" className={`w-4 h-4 transition-transform duration-200 ${mobilePortalOpen ? "rotate-180" : ""}`} />
                   </button>
 
                   <AnimatePresence>
                     {mobilePortalOpen && (
                       <motion.div
+                        id="mobile-portal-links"
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -299,7 +366,7 @@ export function Navigation() {
                               className="flex items-center gap-2.5 px-4 py-2.5 rounded-md text-sm text-muted-foreground hover-elevate transition-colors"
                               data-testid={`link-mobile-portal-${portal.label.toLowerCase().replace(/[^a-z]/g, "-")}`}
                             >
-                              <ExternalLink className="w-3.5 h-3.5 text-primary shrink-0" />
+                              <ExternalLink aria-hidden="true" className="w-3.5 h-3.5 text-primary shrink-0" />
                               {portal.label}
                             </a>
                           ))}
@@ -311,12 +378,12 @@ export function Navigation() {
               </nav>
 
               <div className="mt-auto p-4 border-t border-border space-y-3">
-                <a href="tel:+15085910569" className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Phone className="w-4 h-4" />
+                <a href="tel:+15085910569" className="flex items-center gap-2 text-sm text-muted-foreground" aria-label="Call (508) 591-0569">
+                  <Phone aria-hidden="true" className="w-4 h-4" />
                   (508) 591-0569
                 </a>
                 <a href="mailto:jmellolicsw@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Mail className="w-4 h-4" />
+                  <Mail aria-hidden="true" className="w-4 h-4" />
                   jmellolicsw@gmail.com
                 </a>
               </div>
