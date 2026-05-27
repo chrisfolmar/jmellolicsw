@@ -10,7 +10,7 @@ interface SEOProps {
 
 const SITE_NAME = "Jennifer Mello, LICSW";
 const BASE_URL = "https://jmellolicsw.com";
-const DEFAULT_OG_IMAGE = `${BASE_URL}/images/hero-bg.png`;
+const DEFAULT_OG_IMAGE = `${BASE_URL}/images/hero-bg.jpg`;
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -22,7 +22,7 @@ const localBusinessSchema = {
   url: BASE_URL,
   telephone: "+15085910569",
   email: "jmellolicsw@gmail.com",
-  image: `${BASE_URL}/images/hero-bg.png`,
+  image: `${BASE_URL}/images/hero-bg.jpg`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "225 Water Street, Suite B239",

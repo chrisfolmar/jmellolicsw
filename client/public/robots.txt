@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /privacy
 Sitemap: https://jmellolicsw.com/sitemap.xml

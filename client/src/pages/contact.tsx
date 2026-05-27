@@ -140,7 +140,7 @@ export default function Contact() {
             className="mb-8 sm:mb-10"
           >
             <img
-              src="/images/office-inside.png"
+              src="/images/office-inside.jpg"
               alt="A warm, comfortable therapy office with blue armchairs, natural light, and calming artwork"
               className="w-full h-64 sm:h-80 object-cover rounded-lg"
               data-testid="img-office-inside"
@@ -184,7 +184,7 @@ export default function Contact() {
 
               <div className="overflow-hidden rounded-lg" data-testid="img-office-outside-wrapper">
                 <img
-                  src="/images/office-outside.png"
+                  src="/images/office-outside.jpg"
                   alt="225 Water Street building exterior in Plymouth, MA — home of Jennifer Mello LICSW's office"
                   className="w-full h-36 object-cover"
                   data-testid="img-office-outside"

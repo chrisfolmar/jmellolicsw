@@ -52,7 +52,7 @@ export default function Home() {
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url(/images/hero-bg.png)" }}
+          style={{ backgroundImage: "url(/images/hero-bg.jpg)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
@@ -141,7 +141,7 @@ export default function Home() {
             >
               <div className="relative">
                 <img
-                  src="/images/about-bg.png"
+                  src="/images/about-bg.jpg"
                   alt="Botanical artwork"
                   className="rounded-md w-full"
                   data-testid="img-welcome"
@@ -488,7 +488,7 @@ export default function Home() {
       >
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url(/images/services-bg.png)" }}
+          style={{ backgroundImage: "url(/images/services-bg.jpg)" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
 
