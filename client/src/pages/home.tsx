@@ -19,25 +19,25 @@ const services = [
     icon: Brain,
     title: "Trauma Therapy",
     description:
-      "Certified trauma treatment using evidence-based approaches to help you process difficult experiences and reclaim your sense of safety.",
+      "Many clients come in carrying experiences that have quietly shaped the way they see themselves and the world. Using a certified, trauma-informed approach, I help people process what happened and find their footing again.",
   },
   {
     icon: Heart,
     title: "Anxiety & Depression",
     description:
-      "Compassionate support for managing anxiety and depression through personalized therapeutic strategies and coping techniques.",
+      "Anxiety and depression are exhausting to carry alone, and they rarely have one simple cause. I work with each person to understand what's underneath and build coping strategies that actually hold.",
   },
   {
     icon: Users,
     title: "Relationship Support",
     description:
-      "Guidance for building healthier relationships, setting boundaries, and developing deeper connections with the people in your life.",
+      "A lot of what brings people to therapy shows up first in their relationships. I help clients recognize the patterns that keep repeating, set clearer boundaries, and build connections that feel more honest.",
   },
   {
     icon: Leaf,
     title: "Holistic Wellness",
     description:
-      "Mind-body approaches including meditation, grounding techniques, aromatherapy, and natural supplements for whole-person healing.",
+      "Healing is a whole-person process. Alongside talk therapy, I incorporate mindfulness, grounding, aromatherapy, and other body-based practices when they fit what you're working toward.",
   },
 ];
 

@@ -81,10 +81,10 @@ export default function Privacy() {
               When you use the contact form on this website, we collect only the information you voluntarily provide:
             </p>
             <ul className="mt-3 space-y-2 text-muted-foreground">
-              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Name</strong> — so we can address you properly in our response.</span></li>
-              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Email address</strong> — to reply to your inquiry.</span></li>
-              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Phone number</strong> (optional) — if you prefer to be reached by phone.</span></li>
-              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Message</strong> — the content of your inquiry.</span></li>
+              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Name</strong>: so we can address you properly in our response.</span></li>
+              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Email address</strong>: to reply to your inquiry.</span></li>
+              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Phone number</strong> (optional): if you prefer to be reached by phone.</span></li>
+              <li className="flex gap-2"><span className="text-primary mt-1">•</span><span><strong>Message</strong>: the content of your inquiry.</span></li>
             </ul>
             <p className="text-muted-foreground leading-relaxed mt-4">
               This website does not use cookies for tracking, does not collect payment information, and does not automatically collect any personal data beyond what you submit.

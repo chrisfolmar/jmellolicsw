@@ -33,61 +33,61 @@ const services = [
     icon: Brain,
     title: "Trauma Therapy",
     description:
-      "Certified trauma treatment using psychodynamic and relational approaches. I help clients process difficult experiences, restore a sense of safety, and reclaim their narrative through evidence-based, individualized care.",
+      "Many of my clients come in carrying experiences they've never fully been able to put into words. Using a trauma-informed, psychodynamic approach, I help people process what happened, understand how it's shaped them, and find a path forward that feels stable.",
   },
   {
     icon: Heart,
     title: "Anxiety & Depression",
     description:
-      "Compassionate, personalized support for managing anxiety and depression. Together we develop effective coping strategies and therapeutic techniques tailored to your unique experience and goals.",
+      "Anxiety and depression rarely have one simple cause. I work with each person to understand what's underneath, not just manage the surface, and develop real coping strategies that fit your life.",
   },
   {
     icon: Users,
     title: "Relationship & Boundary Work",
     description:
-      "Guidance for building healthier relationships, forming clear boundaries, and developing deeper, more meaningful connections with the important people in your life.",
+      "A lot of what shows up in therapy has roots in how we relate to the people around us. I help clients recognize patterns that keep repeating, build clearer boundaries, and develop relationships that feel more honest and fulfilling.",
   },
   {
     icon: Shield,
     title: "Emotional Regulation",
     description:
-      "Learn effective strategies for understanding and managing your emotions. I help clients develop healthier responses to stress and build resilience through self-awareness and grounding techniques.",
+      "If your emotions often feel bigger than the situation calls for, or if you shut down when things get hard, we can work on that. I help clients understand their emotional responses and build steadier, more flexible ways of coping.",
   },
   {
     icon: Leaf,
     title: "Holistic Wellness",
     description:
-      "Mind-body approaches that heal the whole person. This may include exploring essential oils, natural supplements, yoga, meditation, stretching, aromatherapy, and grounding techniques.",
+      "Healing isn't just talk. I incorporate body-based practices into treatment when they fit, including mindfulness, grounding exercises, aromatherapy, and movement, because the whole person needs to be in the room.",
   },
   {
     icon: Compass,
     title: "Adolescent & Adult Therapy",
     description:
-      "Specialized individual therapy for adolescents and adults navigating life transitions, identity challenges, and personal growth. I meet you where you are in your journey.",
+      "I work with both adolescents and adults in individual therapy. Young people especially benefit from having a space that's fully theirs, where they feel genuinely heard without judgment.",
   },
   {
     icon: HandHeart,
     title: "Family Consultation",
     description:
-      "Supportive family consultation to help families understand dynamics, improve communication, and create healthier patterns of interaction and support for one another.",
+      "Sometimes one person can't carry all the weight of what a family is going through. I offer family consultation to help improve communication, make sense of dynamics, and figure out how to support one another better.",
   },
   {
     icon: Flame,
     title: "Psychodynamic Therapy",
     description:
-      "In-depth exploration of how past experiences shape present behavior and relationships. This approach promotes lasting change by addressing root causes rather than just symptoms.",
+      "Our past shapes how we see ourselves and how we move through the world, often in ways we don't realize. Psychodynamic work helps uncover those patterns so real change is possible, not just surface-level relief.",
   },
   {
     icon: Wind,
     title: "Mind-Body Techniques",
     description:
-      "Engaging sensory systems through body-based interventions including somatic practices, breathwork, and grounding exercises to support coping and healing from trauma.",
+      "Trauma lives in the body as much as the mind. I engage the sensory system through somatic practices, breathwork, and grounding to help clients reconnect with themselves and move through what's been difficult.",
   },
   {
     icon: Sparkles,
     title: "Individualized Treatment",
     description:
-      "Every person is unique. I develop a personalized roadmap for change that honors your individual experiences, strengths, and therapeutic goals, ensuring the most effective path forward.",
+      "No two people are the same, and no two treatment plans should be either. I spend real time understanding who you are and what you need before laying out a path forward.",
   },
 ];
 
@@ -235,7 +235,7 @@ export default function Services() {
                   be able to use them for my services. I can provide an itemized
                   billing statement (superbill) for you to submit to your insurance
                   company for potential reimbursement. A sliding scale fee may be
-                  available — please reach out to discuss.
+                  available. Please reach out to discuss.
                 </p>
               </div>
             </Card>

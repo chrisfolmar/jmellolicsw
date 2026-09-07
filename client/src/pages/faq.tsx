@@ -40,7 +40,7 @@ const faqs = [
   {
     question: "Do you offer telehealth sessions?",
     answer:
-      "Yes. I offer secure video therapy sessions through Doxy.me, a HIPAA-compliant telehealth platform. Telehealth is available to clients located in Massachusetts. No app download is required — you simply click your session link at your scheduled time.",
+      "Yes. I offer secure video therapy sessions through Doxy.me, a HIPAA-compliant telehealth platform. Telehealth is available to clients located in Massachusetts. No app download is required. You simply click your session link at your scheduled time.",
   },
   {
     question: "What is your cancellation policy?",
@@ -65,7 +65,7 @@ const faqs = [
   {
     question: "What if I'm not sure therapy is right for me?",
     answer:
-      "That's exactly what the free consultation is for. There's no pressure or commitment involved. We can have an honest conversation about what you're going through, what you're hoping for, and whether therapy — and my specific approach — feels like a fit. Sometimes just making the call is the hardest part.",
+      "That's exactly what the free consultation is for. There's no pressure or commitment involved. We can have an honest conversation about what you're going through, what you're hoping for, and whether my approach feels like a good fit. Sometimes just making the call is the hardest part.",
   },
 ];
 
