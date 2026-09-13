@@ -10,6 +10,7 @@ export default function NotFound() {
         title="Page Not Found"
         description="The page you're looking for doesn't exist. Return to Jennifer Mello, LICSW — trauma therapy in Plymouth, MA."
         path="/404"
+        noIndex
       />
       <div className="text-center px-4">
         <p className="text-6xl font-serif font-semibold text-primary/30 mb-4">

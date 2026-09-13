@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Heart, Brain, Leaf, Users, Headphones, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -42,6 +42,7 @@ const services = [
 ];
 
 export default function Home() {
+  const prefersReducedMotion = useReducedMotion();
   return (
     <div>
       <SEO
@@ -120,8 +121,8 @@ export default function Home() {
         >
           <div className="w-5 h-8 rounded-full border-2 border-white/30 flex items-start justify-center p-1">
             <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
+              animate={prefersReducedMotion ? {} : { y: [0, 8, 0] }}
+              transition={prefersReducedMotion ? {} : { repeat: Infinity, duration: 1.5 }}
               className="w-1 h-1.5 bg-white/60 rounded-full"
             />
           </div>

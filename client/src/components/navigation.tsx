@@ -245,20 +245,21 @@ export function Navigation() {
                 )}
               </Button>
 
-              <a href="tel:+15085910569" className="hidden sm:flex" aria-label="Call (508) 591-0569">
-                <Button
-                  variant={showTransparent ? "outline" : "default"}
-                  className={`gap-2 text-sm ${
-                    showTransparent
-                      ? "border-white/30 text-white bg-white/10 backdrop-blur-sm"
-                      : ""
-                  }`}
-                  data-testid="button-call-nav"
-                >
+              <Button
+                asChild
+                variant={showTransparent ? "outline" : "default"}
+                className={`hidden sm:flex gap-2 text-sm ${
+                  showTransparent
+                    ? "border-white/30 text-white bg-white/10 backdrop-blur-sm"
+                    : ""
+                }`}
+                data-testid="button-call-nav"
+              >
+                <a href="tel:+15085910569" aria-label="Call (508) 591-0569">
                   <Phone aria-hidden="true" className="w-3.5 h-3.5" />
                   (508) 591-0569
-                </Button>
-              </a>
+                </a>
+              </Button>
 
               <Button
                 ref={openButtonRef}
