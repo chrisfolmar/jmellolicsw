@@ -38,6 +38,11 @@ const crisisResources = [
     phone: "1-800-662-4357",
     description: "Free referral and information service for mental health and substance use disorders.",
   },
+  {
+    title: "Plymouth Crisis Services",
+    phone: "877-996-3154",
+    description: "Local crisis support available 24/7/365.",
+  },
 ];
 
 const resources = [
@@ -82,6 +87,13 @@ const resources = [
     title: "Headspace - Meditation & Sleep",
     url: "https://www.headspace.com",
     description: "Guided meditation, mindfulness exercises, and sleep tools for everyday mental wellness.",
+  },
+  {
+    icon: Shield,
+    category: "Local Support",
+    title: "South Shore Resource and Advocacy Center (SSRAC)",
+    url: "https://hptc.org/ssrac",
+    description: "Local domestic violence support, advocacy, and resources for individuals and families in the South Shore area.",
   },
 ];
 
@@ -147,7 +159,7 @@ export default function Resources() {
                     </p>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {crisisResources.map((r, i) => (
                     <div key={r.title} className="space-y-1" data-testid={`text-crisis-${i}`}>
                       <h4 className="text-sm font-semibold">{r.title}</h4>

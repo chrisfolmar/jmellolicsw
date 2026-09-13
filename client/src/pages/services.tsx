@@ -9,7 +9,6 @@ import {
   Shield,
   Compass,
   Flame,
-  HandHeart,
   Sparkles,
   Wind,
   Clock,
@@ -64,12 +63,6 @@ const services = [
     title: "Adolescent & Adult Therapy",
     description:
       "I work with both adolescents and adults in individual therapy. Young people especially benefit from having a space that's fully theirs, where they feel genuinely heard without judgment.",
-  },
-  {
-    icon: HandHeart,
-    title: "Family Consultation",
-    description:
-      "Sometimes one person can't carry all the weight of what a family is going through. I offer family consultation to help improve communication, make sense of dynamics, and figure out how to support one another better.",
   },
   {
     icon: Flame,
@@ -181,7 +174,7 @@ export default function Services() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-8">
               {[
                 {
                   label: "Initial Intake Assessment",
@@ -194,12 +187,6 @@ export default function Services() {
                   duration: "50 min session",
                   price: "$200",
                   index: 1,
-                },
-                {
-                  label: "Family Consultation",
-                  duration: "50 min session",
-                  price: "$200",
-                  index: 2,
                 },
               ].map((item) => (
                 <motion.div
@@ -234,8 +221,7 @@ export default function Services() {
                   If your insurance plan includes out-of-network benefits, you may
                   be able to use them for my services. I can provide an itemized
                   billing statement (superbill) for you to submit to your insurance
-                  company for potential reimbursement. A sliding scale fee may be
-                  available. Please reach out to discuss.
+                  company for potential reimbursement. Please reach out to discuss.
                 </p>
               </div>
             </Card>

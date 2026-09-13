@@ -30,7 +30,7 @@ const faqs = [
   {
     question: "What is the cost per session?",
     answer:
-      "Session fees are discussed during the initial consultation. I am committed to making therapy accessible and am happy to discuss your individual financial situation. A sliding scale fee may be available on a case-by-case basis.",
+      "Session fees are discussed during the initial consultation. I am committed to making therapy accessible and am happy to discuss your individual financial situation.",
   },
   {
     question: "How long is a typical therapy session?",

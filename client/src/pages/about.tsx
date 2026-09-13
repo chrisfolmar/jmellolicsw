@@ -198,8 +198,7 @@ export default function About() {
                   As a Licensed Independent Clinical Social Worker with a degree
                   from Smith College School for Social Work, I specialize in
                   working with adolescents and adults, providing individual therapy
-                  and family consultation in an outpatient private practice in
-                  Massachusetts.
+                  in an outpatient private practice in Massachusetts.
                 </p>
 
                 <p className="text-muted-foreground leading-relaxed text-base">

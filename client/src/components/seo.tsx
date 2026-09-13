@@ -68,15 +68,6 @@ const localBusinessSchema = {
             "Individual therapy for anxiety, depression, and emotional regulation.",
         },
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Family Consultation",
-          description:
-            "Family consultation and support for relationship challenges.",
-        },
-      },
     ],
   },
 };
