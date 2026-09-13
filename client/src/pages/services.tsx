@@ -126,39 +126,12 @@ export default function Services() {
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {services.map((service, i) => (
-              <motion.div
-                key={service.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-20px" }}
-                variants={fadeUp}
-                custom={i % 3}
-              >
-                <Card
-                  className="p-6 h-full hover-elevate cursor-default"
-                  data-testid={`card-service-${i}`}
-                >
-                  <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center mb-4">
-                    <service.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <h3 className="font-semibold mb-2">{service.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
             custom={0}
-            className="mt-20"
           >
             <div className="text-center mb-10">
               <p className="text-xs uppercase tracking-[0.2em] text-primary font-medium mb-3">
@@ -226,6 +199,43 @@ export default function Services() {
               </div>
             </Card>
           </motion.div>
+
+          <div className="mt-20">
+            <div className="text-center mb-10">
+              <p className="text-xs uppercase tracking-[0.2em] text-primary font-medium mb-3">
+                Specializations
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold">
+                Areas of Focus
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+              {services.map((service, i) => (
+                <motion.div
+                  key={service.title}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-20px" }}
+                  variants={fadeUp}
+                  custom={i % 3}
+                >
+                  <Card
+                    className="p-6 h-full hover-elevate cursor-default"
+                    data-testid={`card-service-${i}`}
+                  >
+                    <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center mb-4">
+                      <service.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="font-semibold mb-2">{service.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
           <motion.div
             initial="hidden"
