@@ -16,6 +16,7 @@ import type { InsertContact } from "@shared/schema";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -307,6 +308,10 @@ export default function Contact() {
                                 {...field}
                               />
                             </FormControl>
+                            <FormDescription className="text-xs text-muted-foreground">
+                              Please don't include sensitive personal or clinical details here — this form is not a secure clinical channel. For urgent needs, call{" "}
+                              <a href="tel:+15085910569" className="underline underline-offset-2 hover:text-foreground transition-colors">(508) 591-0569</a>.
+                            </FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}

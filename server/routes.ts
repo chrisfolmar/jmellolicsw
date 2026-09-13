@@ -28,8 +28,16 @@ export async function registerRoutes(
 
       const submission = await storage.createContactSubmission(parsed.data);
 
-      sendAdminNotification(parsed.data).catch(() => {});
-      sendClientAutoReply(parsed.data).catch(() => {});
+      const [adminResult, replyResult] = await Promise.allSettled([
+        sendAdminNotification(parsed.data, submission.id),
+        sendClientAutoReply(parsed.data, submission.id),
+      ]);
+      if (adminResult.status === "rejected") {
+        console.error(`Admin notification failed for submission #${submission.id}:`, adminResult.reason instanceof Error ? adminResult.reason.message : adminResult.reason);
+      }
+      if (replyResult.status === "rejected") {
+        console.error(`Auto-reply failed for submission #${submission.id}:`, replyResult.reason instanceof Error ? replyResult.reason.message : replyResult.reason);
+      }
 
       return res.status(201).json({ message: "Message received", id: submission.id });
     } catch (error) {

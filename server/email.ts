@@ -3,7 +3,6 @@ import { log } from "./index";
 
 const ADMIN_EMAIL = "jmellolicsw@gmail.com";
 const FROM_ADDRESS = "Jennifer Mello LICSW <contact@jmellolicsw.com>";
-const PRACTICE_NAME = "Jennifer Mello, LICSW";
 
 function getClient(): Resend | null {
   const apiKey = process.env.RESEND_API_KEY;
@@ -13,12 +12,27 @@ function getClient(): Resend | null {
   return new Resend(apiKey);
 }
 
-export async function sendAdminNotification(submission: {
-  name: string;
-  email: string;
-  phone?: string | null;
-  message: string;
-}): Promise<void> {
+/**
+ * Returns a sanitized error category string from any thrown value or a Resend
+ * error object — never includes message text that might contain PII.
+ */
+function errorCategory(err: unknown): string {
+  if (err instanceof Error) return err.name || "Error";
+  if (typeof err === "object" && err !== null && "name" in err) {
+    return String((err as { name: unknown }).name) || "provider_error";
+  }
+  return "unknown_error";
+}
+
+export async function sendAdminNotification(
+  submission: {
+    name: string;
+    email: string;
+    phone?: string | null;
+    message: string;
+  },
+  submissionId: string
+): Promise<void> {
   const client = getClient();
   if (!client) {
     log("RESEND_API_KEY not set — skipping admin notification email", "email");
@@ -26,9 +40,10 @@ export async function sendAdminNotification(submission: {
   }
 
   const phone = submission.phone ? submission.phone : "Not provided";
+  let failureCategory: string | null = null;
 
   try {
-    await client.emails.send({
+    const { error } = await client.emails.send({
       from: FROM_ADDRESS,
       to: ADMIN_EMAIL,
       subject: `New Contact Form Message from ${submission.name}`,
@@ -48,16 +63,28 @@ export async function sendAdminNotification(submission: {
       ].join("\n"),
       replyTo: submission.email,
     });
-    log(`Admin notification sent for submission from ${submission.email}`, "email");
-  } catch (err) {
-    log(`Failed to send admin notification: ${err}`, "email");
+    if (error) {
+      failureCategory = errorCategory(error);
+    }
+  } catch (transportErr) {
+    failureCategory = errorCategory(transportErr);
   }
+
+  if (failureCategory) {
+    log(`Admin notification failed for submission ${submissionId}: ${failureCategory}`, "email");
+    throw new Error(failureCategory);
+  }
+
+  log(`Admin notification sent (submission ${submissionId})`, "email");
 }
 
-export async function sendClientAutoReply(submission: {
-  name: string;
-  email: string;
-}): Promise<void> {
+export async function sendClientAutoReply(
+  submission: {
+    name: string;
+    email: string;
+  },
+  submissionId: string
+): Promise<void> {
   const client = getClient();
   if (!client) {
     log("RESEND_API_KEY not set — skipping client auto-reply email", "email");
@@ -65,9 +92,10 @@ export async function sendClientAutoReply(submission: {
   }
 
   const firstName = submission.name.split(" ")[0];
+  let failureCategory: string | null = null;
 
   try {
-    await client.emails.send({
+    const { error } = await client.emails.send({
       from: FROM_ADDRESS,
       to: submission.email,
       subject: `Thank you for reaching out, ${firstName}`,
@@ -94,8 +122,17 @@ export async function sendClientAutoReply(submission: {
         `If you are a current client, please use your secure client portal for clinical communications.`,
       ].join("\n"),
     });
-    log(`Auto-reply sent to ${submission.email}`, "email");
-  } catch (err) {
-    log(`Failed to send auto-reply to ${submission.email}: ${err}`, "email");
+    if (error) {
+      failureCategory = errorCategory(error);
+    }
+  } catch (transportErr) {
+    failureCategory = errorCategory(transportErr);
   }
+
+  if (failureCategory) {
+    log(`Auto-reply failed for submission ${submissionId}: ${failureCategory}`, "email");
+    throw new Error(failureCategory);
+  }
+
+  log(`Auto-reply sent (submission ${submissionId})`, "email");
 }
