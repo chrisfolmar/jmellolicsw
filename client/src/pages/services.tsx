@@ -138,7 +138,7 @@ export default function Services() {
                 Fees
               </p>
               <h2 className="font-serif text-2xl sm:text-3xl font-semibold mb-4">
-                Services & Fees
+                Session Rates
               </h2>
               <p className="text-muted-foreground max-w-xl mx-auto leading-relaxed">
                 I value confidentiality and believe that you — not your insurance
