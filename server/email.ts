@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { log } from "./index";
 
 const ADMIN_EMAIL = "jmellolicsw@gmail.com";
-const FROM_ADDRESS = "Jennifer Mello LICSW <onboarding@resend.dev>";
+const FROM_ADDRESS = "Jennifer Mello LICSW <contact@jmellolicsw.com>";
 const PRACTICE_NAME = "Jennifer Mello, LICSW";
 
 function getClient(): Resend | null {
