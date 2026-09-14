@@ -145,6 +145,9 @@ export default function Home() {
                   src="/images/about-bg.jpg"
                   alt="Botanical artwork"
                   className="rounded-md w-full"
+                  width="1400"
+                  height="980"
+                  loading="lazy"
                   data-testid="img-welcome"
                 />
               </div>
@@ -446,16 +449,17 @@ export default function Home() {
                   <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
-              <a href="tel:+15085910569">
-                <Button
-                  variant="outline"
-                  className="border-white/30 text-white bg-white/10 backdrop-blur-sm gap-2 px-6"
-                  data-testid="button-cta-call"
-                >
+              <Button
+                asChild
+                variant="outline"
+                className="border-white/30 text-white bg-white/10 backdrop-blur-sm gap-2 px-6"
+                data-testid="button-cta-call"
+              >
+                <a href="tel:+15085910569">
                   <MapPin className="w-4 h-4" />
                   Plymouth, MA
-                </Button>
-              </a>
+                </a>
+              </Button>
             </motion.div>
           </motion.div>
         </div>

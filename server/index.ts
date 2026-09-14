@@ -1,4 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import helmet from "helmet";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
@@ -13,6 +14,7 @@ declare module "http" {
   }
 }
 
+app.use(compression());
 app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(

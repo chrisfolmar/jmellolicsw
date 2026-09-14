@@ -87,6 +87,9 @@ export default function About() {
         description="Learn about Jennifer Mello, LICSW - a certified trauma therapist with a degree from Smith College, specializing in holistic wellness therapy in Plymouth, MA."
         path="/about"
         ogImage="https://jmellolicsw.com/images/jennifer-headshot.jpg"
+        ogImageWidth={900}
+        ogImageHeight={1200}
+        ogImageAlt="Jennifer Mello, LICSW — certified trauma therapist in Plymouth, MA"
       />
       <Helmet>
         <script type="application/ld+json">
@@ -137,6 +140,8 @@ export default function About() {
                   src="/images/jennifer-headshot.jpg"
                   alt="Jennifer Mello, LICSW — certified trauma therapist in Plymouth, MA"
                   className="rounded-md w-full mb-6 object-cover object-top"
+                  width="900"
+                  height="1200"
                   data-testid="img-about-photo"
                 />
                 <div className="grid grid-cols-2 gap-3">

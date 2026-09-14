@@ -5,6 +5,9 @@ interface SEOProps {
   description: string;
   path?: string;
   ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageAlt?: string;
   noIndex?: boolean;
 }
 
@@ -72,16 +75,26 @@ const localBusinessSchema = {
   },
 };
 
+const DEFAULT_OG_IMAGE_WIDTH = 1600;
+const DEFAULT_OG_IMAGE_HEIGHT = 873;
+const DEFAULT_OG_IMAGE_ALT = "Jennifer Mello, LICSW — certified trauma therapist in Plymouth, MA";
+
 export function SEO({
   title,
   description,
   path = "",
   ogImage,
+  ogImageWidth,
+  ogImageHeight,
+  ogImageAlt,
   noIndex = false,
 }: SEOProps) {
   const fullTitle = `${title} | ${SITE_NAME}`;
   const url = `${BASE_URL}${path}`;
   const image = ogImage || DEFAULT_OG_IMAGE;
+  const imageWidth = ogImageWidth ?? DEFAULT_OG_IMAGE_WIDTH;
+  const imageHeight = ogImageHeight ?? DEFAULT_OG_IMAGE_HEIGHT;
+  const imageAlt = ogImageAlt ?? DEFAULT_OG_IMAGE_ALT;
 
   return (
     <Helmet>
@@ -96,12 +109,16 @@ export function SEO({
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:width" content={String(imageWidth)} />
+      <meta property="og:image:height" content={String(imageHeight)} />
+      <meta property="og:image:alt" content={imageAlt} />
       <meta property="og:locale" content="en_US" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content={imageAlt} />
 
       <script type="application/ld+json">
         {JSON.stringify(localBusinessSchema)}
