@@ -51,10 +51,18 @@ export default function Home() {
         path="/"
       />
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url(/images/hero-bg.jpg)" }}
-        />
+        <div className="absolute inset-0 overflow-hidden">
+          <picture>
+            <source type="image/webp" srcSet="/images/hero-bg.webp" />
+            <img
+              src="/images/hero-bg.jpg"
+              alt=""
+              className="w-full h-full object-cover object-center"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
@@ -141,15 +149,22 @@ export default function Home() {
               className="lg:w-2/5 shrink-0"
             >
               <div className="relative">
-                <img
-                  src="/images/about-bg.jpg"
-                  alt="Botanical artwork"
-                  className="rounded-md w-full"
-                  width="1400"
-                  height="980"
-                  loading="lazy"
-                  data-testid="img-welcome"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/about-bg-400.webp 400w, /images/about-bg-800.webp 800w, /images/about-bg.webp 1400w"
+                    sizes="(min-width: 1024px) 35vw, 100vw"
+                  />
+                  <img
+                    src="/images/about-bg.jpg"
+                    alt="Botanical artwork"
+                    className="rounded-md w-full"
+                    width="1400"
+                    height="980"
+                    loading="lazy"
+                    data-testid="img-welcome"
+                  />
+                </picture>
               </div>
             </motion.div>
 
@@ -411,10 +426,18 @@ export default function Home() {
         className="relative py-20 sm:py-28 overflow-hidden"
         data-testid="section-cta"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url(/images/services-bg.jpg)" }}
-        />
+        <div className="absolute inset-0 overflow-hidden">
+          <picture>
+            <source type="image/webp" srcSet="/images/services-bg.webp" />
+            <img
+              src="/images/services-bg.jpg"
+              alt=""
+              className="w-full h-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
 
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">

@@ -140,15 +140,22 @@ export default function Contact() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mb-8 sm:mb-10"
           >
-            <img
-              src="/images/office-inside.jpg"
-              alt="A warm, comfortable therapy office with blue armchairs, natural light, and calming artwork"
-              className="w-full h-64 sm:h-80 object-cover rounded-lg"
-              width="1400"
-              height="1050"
-              loading="lazy"
-              data-testid="img-office-inside"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet="/images/office-inside-400.webp 400w, /images/office-inside-800.webp 800w, /images/office-inside.webp 1400w"
+                sizes="(min-width: 1024px) 896px, 100vw"
+              />
+              <img
+                src="/images/office-inside.jpg"
+                alt="A warm, comfortable therapy office with blue armchairs, natural light, and calming artwork"
+                className="w-full h-64 sm:h-80 object-cover rounded-lg"
+                width="1400"
+                height="1050"
+                loading="lazy"
+                data-testid="img-office-inside"
+              />
+            </picture>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
@@ -187,15 +194,22 @@ export default function Contact() {
               ))}
 
               <div className="overflow-hidden rounded-lg" data-testid="img-office-outside-wrapper">
-                <img
-                  src="/images/office-outside.jpg"
-                  alt="225 Water Street building exterior in Plymouth, MA — home of Jennifer Mello LICSW's office"
-                  className="w-full h-36 object-cover"
-                  width="1400"
-                  height="1050"
-                  loading="lazy"
-                  data-testid="img-office-outside"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/office-outside-400.webp 400w, /images/office-outside-800.webp 800w, /images/office-outside.webp 1400w"
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                  />
+                  <img
+                    src="/images/office-outside.jpg"
+                    alt="225 Water Street building exterior in Plymouth, MA — home of Jennifer Mello LICSW's office"
+                    className="w-full h-36 object-cover"
+                    width="1400"
+                    height="1050"
+                    loading="lazy"
+                    data-testid="img-office-outside"
+                  />
+                </picture>
               </div>
 
               <a

@@ -136,14 +136,21 @@ export default function About() {
               className="lg:w-2/5 shrink-0"
             >
               <div className="sticky top-28">
-                <img
-                  src="/images/jennifer-headshot.jpg"
-                  alt="Jennifer Mello, LICSW — certified trauma therapist in Plymouth, MA"
-                  className="rounded-md w-full mb-6 object-cover object-top"
-                  width="900"
-                  height="1200"
-                  data-testid="img-about-photo"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/jennifer-headshot-400.webp 400w, /images/jennifer-headshot-700.webp 700w, /images/jennifer-headshot.webp 900w"
+                    sizes="(min-width: 1024px) 35vw, 100vw"
+                  />
+                  <img
+                    src="/images/jennifer-headshot.jpg"
+                    alt="Jennifer Mello, LICSW — certified trauma therapist in Plymouth, MA"
+                    className="rounded-md w-full mb-6 object-cover object-top"
+                    width="900"
+                    height="1200"
+                    data-testid="img-about-photo"
+                  />
+                </picture>
                 <div className="grid grid-cols-2 gap-3">
                   {credentials.map((cred, i) => (
                     <Card key={cred.title} className="p-4" data-testid={`card-credential-${i}`}>
